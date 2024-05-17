@@ -203,7 +203,6 @@ def resolve_filepath(base_path, file_path):
     file_path = parsed_url.netloc + parsed_url.path
     while not dirname == '/':
         resolved_filepath = os.path.join(dirname, file_path)
-        print(resolved_filepath)
         if os.path.exists(resolved_filepath):
             return resolved_filepath
         dirname = os.path.dirname(dirname)
@@ -230,7 +229,6 @@ def get_filename(base_path, file_path, makedirs=False):
         absolute path, otherwise that path joined to ``base_path``.
     """
     file_path = resolve_filepath(base_path, file_path)
-    print(file_path)
     fn = file_path
     if not os.path.isabs(file_path):
         fn = os.path.join(base_path, file_path)
@@ -293,7 +291,7 @@ def configure_origin(value):
     if value is None:
         value = np.eye(4)
     elif isinstance(value, (list, tuple, np.ndarray)):
-        value = np.asanyarray(value).astype(np.float)
+        value = np.asanyarray(value).astype(np.cfloat)
         if value.shape == (6,):
             value = xyz_rpy_to_matrix(value)
         elif value.shape != (4,4):

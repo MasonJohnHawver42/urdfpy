@@ -4,7 +4,7 @@ Author: Matthew Matl
 """
 import argparse
 
-import urdfpy
+from ext.urdfpy.urdfpy import URDF
 
 if __name__ == '__main__':
 
@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    robot = urdfpy.URDF.load(args.urdf)
+    robot = URDF.load(args.urdf)
 
     if args.a:
         robot.animate(use_collision=args.c)
